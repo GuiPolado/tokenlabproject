@@ -1,0 +1,7 @@
+.enderecoBorder{
+    border: 1px ridge rgba(89, 105, 141,0.7);
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    margin-bottom: 15px;
+}

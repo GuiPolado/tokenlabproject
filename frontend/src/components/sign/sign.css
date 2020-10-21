@@ -1,0 +1,13 @@
+.headCard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.voltar{
+    width: 25% !important;
+    padding: 0;
+}
+.justify-center{
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,21 @@
+
+body > #root > div {
+    min-height: 100vh;
+    height: 100%;
+  }
+
+
+  .content {overflow:hidden;}
+  .aside {width:200px;}
+  .fleft {float:left;}
+  .fright {float:right;}
+
+  .mt-3, .my-3 {
+    margin-top: 0!important;
+    padding-bottom: 90px;
+}
+
+.row{
+  margin-left: 0px;
+  justify-content: center;
+}

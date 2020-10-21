@@ -1,0 +1,33 @@
+.btn-cadastrar{
+    display: flex;
+    justify-content: center;
+}
+.box-cadastrar{
+    margin-top: 50px;
+}
+.full-page{
+    height: 100vh;
+}
+.justify-center{
+    display: flex;
+    justify-content: center;
+}
+.btn{
+    width:100%;
+}
+.btnLink{
+    color : #FFF !important;
+    width:70%;
+}
+.headCard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.linkDisabled{
+    cursor: default;
+}
+.equalize{
+    display: flex;
+    align-items: flex-end;
+}
