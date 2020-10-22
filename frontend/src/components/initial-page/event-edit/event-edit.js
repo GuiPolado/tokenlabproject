@@ -28,14 +28,15 @@ class EventEdit extends React.Component {
     }
 
     checkCadastro = async () => {
-        const horaInicio = this.state.horaInicio + ':00';
-        const horaFim = this.state.horaFim + ':00';
+        const horaInicio = this.state.horaInicio;
+        const horaFim = this.state.horaFim ;
         const descricao = this.state.descricao;
+        const idEvento = this.props.location.state.idEvento;
         const login = getToken();
-        api.post('/event-register', { login, horaInicio, horaFim, descricao })
+        api.post('/event-att', { idEvento, login, horaInicio, horaFim, descricao })
             .then(res => {
                 if (res.data === true) {
-                    alert("Evento Registrado com Sucesso!");
+                    alert("Evento Editado com Sucesso!");
                     this.props.history.push('/initial-page');
                 }
                 else {
@@ -57,6 +58,10 @@ class EventEdit extends React.Component {
 
     changeHandler = event => {
         this.setState({ [event.target.name]: event.target.value });
+    };
+
+    changeHandlerTime = event => {
+        this.setState({ [event.target.name]: event.target.value + ':00' });
     };
 
     validateForm = () => {
@@ -93,7 +98,7 @@ class EventEdit extends React.Component {
                                                 </label>
                                             <input
                                                 name="horaInicio"
-                                                onChange={this.changeHandler}
+                                                onChange={this.changeHandlerTime}
                                                 type="time"
                                                 id="horaInicio"
                                                 className="form-control"
@@ -113,7 +118,7 @@ class EventEdit extends React.Component {
                                                 Horário - Fim
                                                 </label>
                                             <input
-                                                onChange={this.changeHandler}
+                                                onChange={this.changeHandlerTime}
                                                 type="time"
                                                 id="horaFim"
                                                 className="form-control"

@@ -49,7 +49,7 @@ public class EventController {
     
     @CrossOrigin
     @PostMapping("/delete/{idEvento}")
-    public boolean deletePeriod(@PathVariable(value = "idEvento") long idEvento) {
+    public boolean deleteEvent(@PathVariable(value = "idEvento") long idEvento) {
         EventoService ev = ServiceFactory.getEventoService();
         ObjectMapper objectMapper = new ObjectMapper();
         return ev.deleteByID(idEvento);
@@ -57,12 +57,24 @@ public class EventController {
     
     @CrossOrigin
     @GetMapping("/event-editor/{idEvento}")
-    public String getUser(@PathVariable(value = "idEvento") long idEvento) throws JsonProcessingException {
+    public String getEvent(@PathVariable(value = "idEvento") long idEvento) throws JsonProcessingException {
         EventoService ev = ServiceFactory.getEventoService();
         ObjectMapper objectMapper = new ObjectMapper();
         Evento eventoAntigo = ev.findByID(idEvento);
         String eventAsString = objectMapper.writeValueAsString(eventoAntigo);
         System.out.print(eventoAntigo);
         return eventAsString;
+    }
+    
+    @CrossOrigin
+    @PostMapping("/event-att")
+    public boolean attEvent(@RequestBody Evento evento) {
+        boolean insert = false;
+        EventoService ev = ServiceFactory.getEventoService();
+        long idEvento = evento.getIdEvento();
+        if(ev.deleteByID(idEvento)){
+            insert = ev.save(evento);
+        };
+        return insert;
     }
 }
