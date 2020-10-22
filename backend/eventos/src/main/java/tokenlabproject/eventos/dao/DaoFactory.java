@@ -17,5 +17,9 @@ public class DaoFactory {
     public static UsuarioDAO getUsuarioDAO() {
         return new UsuarioDAOImpl();
     }
+    
+    public static EventoDAO getEventoDAO() {
+        return new EventoDAOImpl();
+    }
 
 }

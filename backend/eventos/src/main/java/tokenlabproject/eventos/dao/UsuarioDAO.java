@@ -6,11 +6,10 @@
 package tokenlabproject.eventos.dao;
 
 import tokenlabproject.eventos.model.Usuario;
-import java.util.List;
 
 /**
  *
- * @author lucimara
+ * @author guilherme
  */
 public interface UsuarioDAO {
 

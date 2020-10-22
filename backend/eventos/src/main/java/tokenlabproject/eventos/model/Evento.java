@@ -12,11 +12,15 @@ import java.sql.Time;
  * @author user
  */
 public class Evento {
+    private String login;
     private Time horaInicio;
     private Time horaFim;
     private String descricao;
     
     public Evento() {
+    }
+    public void setLogin(String login) {
+        this.login = login;
     }
     
     public void setHoraInicio(Time horaInicio) {
@@ -31,7 +35,11 @@ public class Evento {
         this.descricao = descricao;
     }
     
-     public Time getHoraInicio() {
+    public String getLogin() {
+        return login;
+    }
+ 
+    public Time getHoraInicio() {
         return horaInicio;
     }
 

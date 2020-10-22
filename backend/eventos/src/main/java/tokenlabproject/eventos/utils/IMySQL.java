@@ -12,7 +12,7 @@ package tokenlabproject.eventos.utils;
 public interface IMySQL {
 
     final String USUARIO = "root";
-    final String SENHA = "1234";
+    final String SENHA = "200797";
     final String URL = "jdbc:mysql://localhost:3306/TokenLabProject?useTimezone=true&serverTimezone=UTC";
     final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 }

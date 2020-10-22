@@ -9,18 +9,18 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usuario: "",
+      login: "",
       senha: "",
     };
   }
 
   checkCadastro = async () => {
-    const usuario = this.state.usuario;
+    const login = this.state.login;
     const senha = this.state.senha;
-    api.post('/user', { usuario, senha})
+    api.post('/user', { login, senha})
       .then(res => {
         if (res.data === true) {
-          logar(usuario);
+          logar(login);
           alert("Usuário cadastrado com sucesso!");
           this.props.history.push('/initial-page');
         }
@@ -56,7 +56,7 @@ class Register extends React.Component {
 
   validateForm = () => {
     return (
-      this.state.usuario.length > 0 &&
+      this.state.login.length > 0 &&
       this.state.senha.length > 0 
     );
   }
@@ -91,7 +91,7 @@ class Register extends React.Component {
                   <MDBRow>
                     <MDBCol md="4" className="mb-3">
                       <label
-                        htmlFor="usuario"
+                        htmlFor="login"
                         className="grey-text"
                       >
                         Usuário
@@ -99,9 +99,9 @@ class Register extends React.Component {
                       <input
                         onChange={this.changeHandler}
                         type="text"
-                        id="usuario"
+                        id="login"
                         className="form-control"
-                        name="usuario"
+                        name="login"
                         placeholder=""
                         required
                       />

@@ -17,4 +17,8 @@ public class ServiceFactory {
     public static UsuarioService getUsuarioService() {
         return (UsuarioService) new UsuarioServiceImpl();
     }
+    
+    public static EventoService getEventoService() {
+        return (EventoService) new EventoServiceImpl();
+    }
 }
