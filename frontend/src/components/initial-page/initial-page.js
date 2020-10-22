@@ -27,15 +27,15 @@ class Page extends Component {
 
     this.setState({ eventos: response.data });
   }
-  /*
+
   toggleExclude = id => {
-    this.setState({idEvento: id});
-    this.setState({toggleModal: !this.state.toggleModal})
+    this.setState({ idEvento: id });
+    this.setState({ toggleModal: !this.state.toggleModal })
   }
 
   exclude = () => {
-    api.post('/delete/'+this.state.idEvento)
-    .then(res => {
+    api.post('/delete/' + this.state.idEvento)
+      .then(res => {
         if (res.data === true) {
           alert("Evento Removido com Sucesso!");
           this.toggleExclude(null);
@@ -44,9 +44,15 @@ class Page extends Component {
         else {
           alert("Erro, evento não existente")
         }
-      }); 
+      });
   }
-  */
+
+  goToEdit = id => {
+    this.props.history.push({
+      pathname: '/event-edit',
+      state: {idEvento: id}  
+  })
+  }
   render() {
     return (
       <div className="full-page">
@@ -58,9 +64,9 @@ class Page extends Component {
               <MDBModalBody>
                 Deseja mesmo excluir esse evento?
                             </MDBModalBody>
-              <MDBModalFooter className="modalJustify">
-                <MDBBtn color="mdb-color" className="modalBtn" onClick={() => this.toggleExclude(null)}>Cancelar</MDBBtn>
-                <MDBBtn color="red" className="modalBtn" onClick={() => this.exclude()} to="">Excluir</MDBBtn>
+              <MDBModalFooter className="justify-center">
+                <MDBCol md="5" className="mb-3"> <MDBBtn color="mdb-color" className="modalBtn" onClick={() => this.toggleExclude(null)}>Cancelar</MDBBtn></MDBCol>
+                <MDBCol md="5" className="mb-3"><MDBBtn color="red" className="modalBtn" onClick={() => this.exclude()} to="">Excluir</MDBBtn> </MDBCol>
               </MDBModalFooter>
             </MDBModal>
           </MDBContainer>
@@ -71,14 +77,14 @@ class Page extends Component {
                 <MDBCardTitle className="justify-center" >Eventos</MDBCardTitle>
                 <MDBCardBody>
                   {this.state.eventos.map((evento) => (
-                    <MDBCol key={evento.horaInicio} md="8" lg="10" className="mx-auto float-none white z-depth-1 py-2 px-2 mb-4" >
+                    <MDBCol key={evento.idEvento} md="8" lg="10" className="mx-auto float-none white z-depth-1 py-2 px-2 mb-4" >
                       <MDBRow>
                         <MDBCol md="5" className="mb-3">
                           <label
                             htmlFor="horaInicio"
                             className="grey-text labelSpace"
                           >
-                            Horário Início: 
+                            Horário Início:
                                             </label>
                           {evento.horaInicio}
                         </MDBCol>
@@ -101,16 +107,21 @@ class Page extends Component {
                         </label>
                         {evento.descricao}
                       </MDBRow>
-                      <MDBRow className="center">
-                        <MDBBtn color="red" type="submit" className="exclude" onClick={() => this.toggleExclude(evento.idPeriodo)}>
-                          Excluir Evento
+                      <MDBRow className="justify-center">
+                        <MDBCol md="5" className="mb-3">
+                          <MDBBtn color="red" type="submit" onClick={() => this.toggleExclude(evento.idEvento)}>
+                            Excluir
                         </MDBBtn>
+                        </MDBCol>
+                        <MDBCol md="5" className="mb-3">
+                          <MDBBtn color="mdb-color" className="btn" onClick={() => this.goToEdit(evento.idEvento)}>Editar</MDBBtn> 
+                        </MDBCol>
                       </MDBRow>
+                    </MDBCol>
+                  ))}
+                  <MDBCol md='12' className="mb-4 justify-center">
+                    <Link className="btnLink" to="/event-register" ><MDBBtn color="mdb-color" className="btn">Cadastrar Evento</MDBBtn></Link>
                   </MDBCol>
-                                ))}
-                    <MDBCol md='12' className="mb-4 justify-center">
-                      <Link className="btnLink" to="/event-register" ><MDBBtn color="mdb-color" className="btn">Cadastrar Evento</MDBBtn></Link>
-                    </MDBCol>                          
                 </MDBCardBody>
               </MDBCol>
             </MDBRow>

@@ -16,7 +16,7 @@ public interface EventoDAO {
     final String INSERT_EVENTO = "INSERT INTO Evento(" 
             + "login, horaInicio, horaFim, descricao) VALUES(?, ?, ?, ?)";
 
-    final String FIND_BY_LOGIN = "SELECT horaInicio, horaFim, descricao "
+    final String FIND_BY_LOGIN = "SELECT idEvento, horaInicio, horaFim, descricao "
             + "FROM Evento "
             + "WHERE login = ?";
     

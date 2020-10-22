@@ -47,4 +47,11 @@ public class EventController {
         return eventAsString;
     }
     
+    @CrossOrigin
+    @PostMapping("/delete/{idEvento}")
+    public boolean deletePeriod(@PathVariable(value = "idEvento") long idEvento) {
+        EventoService ev = ServiceFactory.getEventoService();
+        ObjectMapper objectMapper = new ObjectMapper();
+        return ev.deleteByID(idEvento);
+    }
 }
