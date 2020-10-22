@@ -34,7 +34,7 @@ public class EventoServiceImpl implements EventoService{
     }
 
     @Override
-    public List<Evento> findByLogin(String login) {
-        return this.eventoDao.findByLogin(login);
+    public List<Evento> findAllByLogin(String login) {
+        return this.eventoDao.findAllByLogin(login);
     }
 }

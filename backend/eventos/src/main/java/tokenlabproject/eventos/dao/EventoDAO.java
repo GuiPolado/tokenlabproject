@@ -22,5 +22,5 @@ public interface EventoDAO {
     
     public boolean save(Evento evento);
 
-    public List<Evento> findByLogin(String login);
+    public List<Evento> findAllByLogin(String login);
 }

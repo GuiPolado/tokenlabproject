@@ -49,7 +49,7 @@ public class EventoDAOImpl implements EventoDAO{
         return b;
     }
     @Override
-    public List<Evento> findByLogin(String login) {
+    public List<Evento> findAllByLogin(String login) {
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet res = null;
