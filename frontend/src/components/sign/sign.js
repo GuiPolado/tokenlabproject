@@ -12,7 +12,7 @@ class Sign extends Component {
           <MDBFreeBird>
             <MDBRow>
               <MDBCol md="8" lg="7" className="mx-auto float-none white z-depth-1 py-2 px-2">
-                <MDBCardTitle className="justify-center headCard" >Menu</MDBCardTitle>
+                <MDBCardTitle className="justify-center" >Menu</MDBCardTitle>
                 <MDBCardBody>
                     <MDBCol md='12' className="mb-4 justify-center">
                     <Link className="btnLink" to="/login"><MDBBtn color="mdb-color"  className="btn" >Efetuar Login</MDBBtn></Link>
