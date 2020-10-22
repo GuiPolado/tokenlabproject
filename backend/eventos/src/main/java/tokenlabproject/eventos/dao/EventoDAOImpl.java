@@ -103,4 +103,34 @@ public class EventoDAOImpl implements EventoDAO{
         }
         return b;
     }
+    
+    @Override
+    public Evento findByID(long idEvento) {
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet res = null;
+        Evento evento = null;
+
+        con = FabricaConexao.getConexao();
+
+        if (con != null) {
+            try {
+                pstm = con.prepareStatement(FIND_BY_ID);
+                pstm.setLong(1, idEvento);
+                res = pstm.executeQuery();
+
+                while (res.next()) {
+                    evento = new Evento();
+                    evento.setIdEvento(idEvento);
+                    evento.setLogin(res.getString(1));
+                    evento.setHoraInicio(res.getTime(2));
+                    evento.setHoraFim(res.getTime(3));
+                    evento.setDescricao(res.getString(4));
+                }
+            } catch (SQLException ex) {
+                System.out.println("Message: " + ex);
+            }
+        }
+        return evento;
+    }
 }

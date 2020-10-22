@@ -19,4 +19,6 @@ public interface EventoService {
     public List<Evento> findAllByLogin(String login);
     
     boolean deleteByID(long idEvento);
+
+    public Evento findByID(long idEvento);
 }

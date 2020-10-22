@@ -47,4 +47,9 @@ public class EventoServiceImpl implements EventoService{
 
         return b;
     }
+    
+    @Override
+    public Evento findByID(long idEvento) {
+        return this.eventoDao.findByID(idEvento);
+    }
 }

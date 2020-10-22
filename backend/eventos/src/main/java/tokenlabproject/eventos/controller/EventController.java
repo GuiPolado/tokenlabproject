@@ -54,4 +54,15 @@ public class EventController {
         ObjectMapper objectMapper = new ObjectMapper();
         return ev.deleteByID(idEvento);
     }
+    
+    @CrossOrigin
+    @GetMapping("/event-editor/{idEvento}")
+    public String getUser(@PathVariable(value = "idEvento") long idEvento) throws JsonProcessingException {
+        EventoService ev = ServiceFactory.getEventoService();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Evento eventoAntigo = ev.findByID(idEvento);
+        String eventAsString = objectMapper.writeValueAsString(eventoAntigo);
+        System.out.print(eventoAntigo);
+        return eventAsString;
+    }
 }

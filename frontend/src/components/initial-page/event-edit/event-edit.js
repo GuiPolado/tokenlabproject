@@ -11,8 +11,7 @@ class EventEdit extends React.Component {
         this.state = {
             horaInicio: "",
             horaFim: "",
-            descricao: "",
-            modal: false
+            descricao: ""
         };
         const idEvento = this.props.location.state.idEvento;
         api.get('/event-editor/' + idEvento)
@@ -60,10 +59,6 @@ class EventEdit extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
     };
 
-    toggleModal = () => {
-        this.setState({ modal: !this.state.modal });
-    }
-
     validateForm = () => {
         return (
             this.state.horaInicio.length > 0 &&
@@ -74,24 +69,13 @@ class EventEdit extends React.Component {
     render() {
         return (
             <MDBContainer className="mt-3 test">
-                <MDBContainer>
-                    <MDBModal isOpen={this.state.modal} toggle={this.toggleModal}>
-                        <MDBModalHeader toggle={this.toggleModal}>ERRO</MDBModalHeader>
-                        <MDBModalBody>
-                            Evento já existe no banco de dados !
-                            </MDBModalBody>
-                        <MDBModalFooter>
-                            <MDBBtn color="mdb-color" onClick={this.toggleModal}>Close</MDBBtn>
-                        </MDBModalFooter>
-                    </MDBModal>
-                </MDBContainer>
 
                 <MDBEdgeHeader color="mdb-color darken-2"></MDBEdgeHeader>
                 <MDBFreeBird>
                     <MDBRow>
                         <MDBCol md="8" lg="7" className="mx-auto float-none white z-depth-1 py-2 px-2">
                             <MDBCardBody>
-                                <MDBCardTitle className="headCard">Registro de Evento
+                                <MDBCardTitle className="headCard">Edição de Evento
                                         <Link className="btnLink voltar" to="/initial-page"><MDBBtn color="mdb-color" className="text-xs-left " type="submit" >Voltar</MDBBtn></Link>
                                 </MDBCardTitle>
                                 <form
@@ -114,6 +98,7 @@ class EventEdit extends React.Component {
                                                 id="horaInicio"
                                                 className="form-control"
                                                 placeholder=""
+                                                value={this.state.horaInicio}
                                                 required
                                             />
                                             <div className="invalid-feedback">
@@ -134,6 +119,7 @@ class EventEdit extends React.Component {
                                                 className="form-control"
                                                 name="horaFim"
                                                 placeholder=""
+                                                value={this.state.horaFim}
                                                 required
                                             />
                                             <div className="invalid-feedback">
@@ -156,6 +142,7 @@ class EventEdit extends React.Component {
                                                 className="form-control"
                                                 name="descricao"
                                                 placeholder=""
+                                                value={this.state.descricao}
                                                 required
                                             />
                                             <div className="invalid-feedback">
@@ -164,7 +151,7 @@ class EventEdit extends React.Component {
                                         </MDBCol>
                                     </MDBRow>
                                     <MDBBtn color="mdb-color" type="submit">
-                                        Registrar Evento
+                                        Salvar Evento
             </MDBBtn>
                                 </form>
                             </MDBCardBody>

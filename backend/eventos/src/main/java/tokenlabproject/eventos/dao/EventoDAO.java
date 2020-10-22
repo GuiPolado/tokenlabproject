@@ -20,6 +20,10 @@ public interface EventoDAO {
             + "FROM Evento "
             + "WHERE login = ?";
     
+    final String FIND_BY_ID = "SELECT login, horaInicio, horaFim, descricao "
+            + "FROM Evento "
+            + "WHERE idEvento = ?";
+    
     final String DELETE_BY_ID = "DELETE FROM Evento "
             + "WHERE idEvento = ?";
     
@@ -28,4 +32,6 @@ public interface EventoDAO {
     public List<Evento> findAllByLogin(String login);
     
     public boolean deleteByID(long idEvento);
+
+    public Evento findByID(long idEvento);
 }
