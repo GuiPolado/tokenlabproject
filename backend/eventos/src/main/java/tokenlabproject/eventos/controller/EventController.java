@@ -5,7 +5,12 @@
  */
 package tokenlabproject.eventos.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,5 +35,15 @@ public class EventController {
             insert = true;
         }
         return insert;
+    }
+    
+    @CrossOrigin
+    @GetMapping("/user-events/{login}")
+    public String userEvents(@PathVariable(value = "login") String login) throws JsonProcessingException {
+        EventoService pu = ServiceFactory.getEventoService();
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Evento> eventos = pu.findAllByLogin(login);
+        String eventAsString = objectMapper.writeValueAsString(eventos);
+        return eventAsString;
     }
 }

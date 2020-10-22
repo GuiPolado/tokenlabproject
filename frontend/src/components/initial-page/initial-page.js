@@ -16,7 +16,7 @@ class Page extends Component {
       idEvento: null
     };
   }
-/*
+
   componentDidMount() {
     this.loadEventos();
   }
@@ -26,8 +26,9 @@ class Page extends Component {
     const response = await api.get("/user-events/" + login);
 
     this.setState({ eventos: response.data });
+    console.log(this.state.eventos);
   }
-
+  /*
   toggleExclude = id => {
     this.setState({idEvento: id});
     this.setState({toggleModal: !this.state.toggleModal})
