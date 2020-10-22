@@ -14,7 +14,7 @@ import tokenlabproject.eventos.model.Evento;
  */
 public interface EventoDAO {
     final String INSERT_EVENTO = "INSERT INTO Evento(" 
-            + "login, horaInicio, horaFim, descricao) VALUES(?, ?)";
+            + "login, horaInicio, horaFim, descricao) VALUES(?, ?, ?, ?)";
 
     final String FIND_BY_LOGIN = "SELECT horaInicio, horaFim, descricao "
             + "FROM Evento "

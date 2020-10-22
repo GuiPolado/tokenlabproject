@@ -21,7 +21,7 @@ class EventRegister extends React.Component {
         const horaFim = this.state.horaFim + ':00';
         const descricao = this.state.descricao;
         const login = getToken();
-        api.post('/event', { login, horaInicio, horaFim, descricao})
+        api.post('/event-register', { login, horaInicio, horaFim, descricao})
           .then(res => {
             if (res.data === true) {
               alert("Evento Registrado com Sucesso!");

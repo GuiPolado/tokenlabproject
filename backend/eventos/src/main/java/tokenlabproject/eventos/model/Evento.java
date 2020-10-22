@@ -50,4 +50,10 @@ public class Evento {
     public String getDescricao() {
         return descricao;
     }
+    
+    @Override
+    public String toString() {
+        return "login = " + login + ", horaInicio = " + horaInicio +
+                ", horaFim = " + horaFim + ", descricao = " + descricao;
+    }
 }

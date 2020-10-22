@@ -25,7 +25,7 @@ public class EventController {
     public boolean registerEvent(@RequestBody Evento evento) {
         boolean insert = false;
         EventoService ev = ServiceFactory.getEventoService();
-        System.out.print(evento);
+
         if (ev.save(evento)) {
             insert = true;
         }
