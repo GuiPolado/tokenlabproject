@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Nav from '../nav/nav';
 import { MDBFreeBird, MDBCol, MDBRow, MDBCardBody, MDBCardTitle, MDBBtn, MDBContainer, MDBEdgeHeader, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter } from
   "mdbreact";
 import "./initial-page.css";
 import api from "../services/api";
-import {getToken} from "../services/auth";
+import { getToken } from "../services/auth";
 
 class Page extends Component {
   constructor(props) {
@@ -26,7 +26,6 @@ class Page extends Component {
     const response = await api.get("/user-events/" + login);
 
     this.setState({ eventos: response.data });
-    console.log(this.state.eventos);
   }
   /*
   toggleExclude = id => {
@@ -53,33 +52,71 @@ class Page extends Component {
       <div className="full-page">
         <Nav />
         <MDBContainer className="mt-3">
-        <MDBContainer>
-                <MDBModal isOpen={this.state.toggleModal} toggle={this.toggleExclude}>
-                    <MDBModalHeader toggle={this.toggleModal}>Aviso</MDBModalHeader>
-                    <MDBModalBody>
-                        Deseja mesmo excluir esse evento?
+          <MDBContainer>
+            <MDBModal isOpen={this.state.toggleModal} toggle={this.toggleExclude}>
+              <MDBModalHeader toggle={this.toggleModal}>Aviso</MDBModalHeader>
+              <MDBModalBody>
+                Deseja mesmo excluir esse evento?
                             </MDBModalBody>
-                    <MDBModalFooter className="modalJustify">
-                            <MDBBtn color="mdb-color" className="modalBtn" onClick={() => this.toggleExclude(null)}>Cancelar</MDBBtn>
-                            <MDBBtn color="red" className="modalBtn" onClick={() => this.exclude()} to="">Excluir</MDBBtn>
-                    </MDBModalFooter>
-                </MDBModal>
-        </MDBContainer>
+              <MDBModalFooter className="modalJustify">
+                <MDBBtn color="mdb-color" className="modalBtn" onClick={() => this.toggleExclude(null)}>Cancelar</MDBBtn>
+                <MDBBtn color="red" className="modalBtn" onClick={() => this.exclude()} to="">Excluir</MDBBtn>
+              </MDBModalFooter>
+            </MDBModal>
+          </MDBContainer>
           <MDBEdgeHeader color="mdb-color darken-2"></MDBEdgeHeader>
           <MDBFreeBird>
             <MDBRow>
               <MDBCol md="8" lg="7" className="mx-auto float-none white z-depth-1 py-2 px-2">
                 <MDBCardTitle className="justify-center" >Eventos</MDBCardTitle>
                 <MDBCardBody>
+                  {this.state.eventos.map((evento) => (
+                    <MDBCol key={evento.horaInicio} md="8" lg="10" className="mx-auto float-none white z-depth-1 py-2 px-2 mb-4" >
+                      <MDBRow>
+                        <MDBCol md="5" className="mb-3">
+                          <label
+                            htmlFor="horaInicio"
+                            className="grey-text labelSpace"
+                          >
+                            Horário Início: 
+                                            </label>
+                          {evento.horaInicio}
+                        </MDBCol>
+                        <MDBCol md="5" className="mb-3">
+                          <label
+                            htmlFor="horaFim"
+                            className="grey-text labelSpace"
+                          >
+                            Horário Fim:
+                                            </label>
+                          {evento.horaFim}
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBRow className="center">
+                        <label
+                          htmlFor="Descricao"
+                          className="grey-text labelSpace"
+                        >
+                          Descrição:
+                        </label>
+                        {evento.descricao}
+                      </MDBRow>
+                      <MDBRow className="center">
+                        <MDBBtn color="red" type="submit" className="exclude" onClick={() => this.toggleExclude(evento.idPeriodo)}>
+                          Excluir Evento
+                        </MDBBtn>
+                      </MDBRow>
+                  </MDBCol>
+                                ))}
                     <MDBCol md='12' className="mb-4 justify-center">
-                    <Link className="btnLink" to="/event-register" ><MDBBtn color="mdb-color"  className="btn">Cadastrar Evento</MDBBtn></Link>
-                      </MDBCol>                          
+                      <Link className="btnLink" to="/event-register" ><MDBBtn color="mdb-color" className="btn">Cadastrar Evento</MDBBtn></Link>
+                    </MDBCol>                          
                 </MDBCardBody>
               </MDBCol>
             </MDBRow>
           </MDBFreeBird>
         </MDBContainer>
-      </div>
+      </div >
     );
   }
 }

@@ -46,4 +46,5 @@ public class EventController {
         String eventAsString = objectMapper.writeValueAsString(eventos);
         return eventAsString;
     }
+    
 }
