@@ -5,6 +5,7 @@
  */
 package tokenlabproject.eventos.service;
 
+import java.sql.Time;
 import java.util.List;
 import tokenlabproject.eventos.dao.DaoFactory;
 import tokenlabproject.eventos.dao.EventoDAO;
@@ -36,5 +37,14 @@ public class EventoServiceImpl implements EventoService{
     @Override
     public List<Evento> findAllByLogin(String login) {
         return this.eventoDao.findAllByLogin(login);
+    }
+    
+    @Override
+    public boolean deleteByID(long idEvento) {
+        boolean b = false;
+
+        b = this.eventoDao.deleteByID(idEvento);
+
+        return b;
     }
 }

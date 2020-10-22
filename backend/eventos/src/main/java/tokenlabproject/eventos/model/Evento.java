@@ -12,6 +12,7 @@ import java.sql.Time;
  * @author user
  */
 public class Evento {
+    private long idEvento;
     private String login;
     private Time horaInicio;
     private Time horaFim;
@@ -19,6 +20,11 @@ public class Evento {
     
     public Evento() {
     }
+    
+    public void setIdEvento(long idEvento) {
+        this.idEvento = idEvento;
+    }
+    
     public void setLogin(String login) {
         this.login = login;
     }
@@ -33,6 +39,10 @@ public class Evento {
     
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+    
+    public long getIdEvento() {
+        return idEvento;
     }
     
     public String getLogin() {

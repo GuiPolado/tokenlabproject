@@ -5,15 +5,18 @@
  */
 package tokenlabproject.eventos.service;
 
+import java.sql.Time;
 import java.util.List;
 import tokenlabproject.eventos.model.Evento;
 
 /**
  *
- * @author user
+ * @author guilherme
  */
 public interface EventoService {
     boolean save(Evento evento);
 
     public List<Evento> findAllByLogin(String login);
+    
+    boolean deleteByID(long idEvento);
 }

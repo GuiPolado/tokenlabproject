@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import tokenlabproject.eventos.model.Evento;
@@ -66,10 +67,11 @@ public class EventoDAOImpl implements EventoDAO{
 
                 while (res.next()) {
                     evento = new Evento();
+                    evento.setIdEvento(res.getLong(1));
                     evento.setLogin(login);
-                    evento.setHoraInicio(res.getTime(1));
-                    evento.setHoraFim(res.getTime(2));
-                    evento.setDescricao(res.getString(3));
+                    evento.setHoraInicio(res.getTime(2));
+                    evento.setHoraFim(res.getTime(3));
+                    evento.setDescricao(res.getString(4));
                     eventos.add(evento);
                 }
             } catch (SQLException ex) {
@@ -77,5 +79,28 @@ public class EventoDAOImpl implements EventoDAO{
             }
         }
         return eventos;
+    }
+    
+    @Override
+    public boolean deleteByID(long idEvento) {
+        boolean b = false;
+        Connection con = null;
+        PreparedStatement pstm = null;
+
+        con = FabricaConexao.getConexao();
+
+        if (con != null) {
+            try {
+                con.setAutoCommit(false);
+                pstm = con.prepareStatement(DELETE_BY_ID);
+                pstm.setLong(1, idEvento);
+                pstm.executeUpdate();
+                con.commit();
+                b = true;
+            } catch (SQLException ex) {
+                System.out.println("Message: " + ex);
+            }
+        }
+        return b;
     }
 }

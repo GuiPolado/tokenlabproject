@@ -20,7 +20,12 @@ public interface EventoDAO {
             + "FROM Evento "
             + "WHERE login = ?";
     
+    final String DELETE_BY_ID = "DELETE FROM Evento "
+            + "WHERE idEvento = ?";
+    
     public boolean save(Evento evento);
 
     public List<Evento> findAllByLogin(String login);
+    
+    public boolean deleteByID(long idEvento);
 }
