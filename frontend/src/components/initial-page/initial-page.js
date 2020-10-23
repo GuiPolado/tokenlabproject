@@ -53,6 +53,11 @@ class Page extends Component {
       state: {idEvento: id}  
   })
   }
+
+  timestampToHuman = date => {
+    var d = new Date(date);
+    return (d.getDate() === 31 ? '01' : d.getDate() + 1) + '/' + (d.getMonth() + 1) + '/' + d.getFullYear()
+  }
   render() {
     return (
       <div className="full-page">
@@ -78,6 +83,26 @@ class Page extends Component {
                 <MDBCardBody>
                   {this.state.eventos.map((evento) => (
                     <MDBCol key={evento.idEvento} md="8" lg="10" className="mx-auto float-none white z-depth-1 py-2 px-2 mb-4" >
+                      <MDBRow>
+                        <MDBCol md="5" className="mb-3">
+                          <label
+                            htmlFor="dataInicio"
+                            className="grey-text labelSpace"
+                          >
+                            Data Início:
+                          </label>
+                          {this.timestampToHuman(evento.dataInicio)}
+                        </MDBCol>
+                        <MDBCol md="5" className="mb-3">
+                          <label
+                            htmlFor="dataFim"
+                            className="grey-text labelSpace"
+                          >
+                            Data Fim:
+                                            </label>
+                          {this.timestampToHuman(evento.dataFim)}
+                        </MDBCol>
+                      </MDBRow>
                       <MDBRow>
                         <MDBCol md="5" className="mb-3">
                           <label

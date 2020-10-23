@@ -5,6 +5,7 @@
  */
 package tokenlabproject.eventos.model;
 
+import java.sql.Date;
 import java.sql.Time;
 
 /**
@@ -14,6 +15,8 @@ import java.sql.Time;
 public class Evento {
     private long idEvento;
     private String login;
+    private Date dataInicio;
+    private Date dataFim;
     private Time horaInicio;
     private Time horaFim;
     private String descricao;
@@ -27,6 +30,14 @@ public class Evento {
     
     public void setLogin(String login) {
         this.login = login;
+    }
+    
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+    
+    public void setDataFim(Date dataFim) {
+        this.dataFim = dataFim;
     }
     
     public void setHoraInicio(Time horaInicio) {
@@ -48,7 +59,15 @@ public class Evento {
     public String getLogin() {
         return login;
     }
+    
+    public Date getDataInicio() {
+        return dataInicio;
+    }
  
+    public Date getDataFim() {
+        return dataFim;
+    }
+    
     public Time getHoraInicio() {
         return horaInicio;
     }
@@ -63,7 +82,8 @@ public class Evento {
     
     @Override
     public String toString() {
-        return "login = " + login + ", horaInicio = " + horaInicio +
+        return "login = " + login + ", dataInicio = " + dataInicio +
+                ", dataFim = " + dataFim + ", horaInicio = " + horaInicio +
                 ", horaFim = " + horaFim + ", descricao = " + descricao;
     }
 }

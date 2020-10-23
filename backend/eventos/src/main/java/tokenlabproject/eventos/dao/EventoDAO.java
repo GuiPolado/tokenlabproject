@@ -14,13 +14,16 @@ import tokenlabproject.eventos.model.Evento;
  */
 public interface EventoDAO {
     final String INSERT_EVENTO = "INSERT INTO Evento(" 
-            + "login, horaInicio, horaFim, descricao) VALUES(?, ?, ?, ?)";
+            + "login, dataInicio, dataFim, horaInicio, horaFim, descricao) "
+            + "VALUES(?, ?, ?, ?, ?, ?)";
 
-    final String FIND_BY_LOGIN = "SELECT idEvento, horaInicio, horaFim, descricao "
+    final String FIND_BY_LOGIN = "SELECT idEvento, dataInicio, dataFim,"
+            + " horaInicio, horaFim, descricao "
             + "FROM Evento "
             + "WHERE login = ?";
     
-    final String FIND_BY_ID = "SELECT login, horaInicio, horaFim, descricao "
+    final String FIND_BY_ID = "SELECT login, dataInicio, dataFim, "
+            + "horaInicio, horaFim, descricao "
             + "FROM Evento "
             + "WHERE idEvento = ?";
     

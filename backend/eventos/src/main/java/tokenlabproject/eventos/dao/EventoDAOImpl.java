@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import tokenlabproject.eventos.model.Evento;
@@ -37,9 +36,11 @@ public class EventoDAOImpl implements EventoDAO{
                 con.setAutoCommit(false);
                 pstm = con.prepareStatement(INSERT_EVENTO);
                 pstm.setString(1, evento.getLogin());
-                pstm.setTime(2, evento.getHoraInicio());
-                pstm.setTime(3, evento.getHoraFim());
-                pstm.setString(4, evento.getDescricao());
+                pstm.setDate(2, evento.getDataInicio());
+                pstm.setDate(3, evento.getDataFim());
+                pstm.setTime(4, evento.getHoraInicio());
+                pstm.setTime(5, evento.getHoraFim());
+                pstm.setString(6, evento.getDescricao());
                 pstm.executeUpdate();
                 con.commit();
                 b = true;
@@ -69,9 +70,11 @@ public class EventoDAOImpl implements EventoDAO{
                     evento = new Evento();
                     evento.setIdEvento(res.getLong(1));
                     evento.setLogin(login);
-                    evento.setHoraInicio(res.getTime(2));
-                    evento.setHoraFim(res.getTime(3));
-                    evento.setDescricao(res.getString(4));
+                    evento.setDataInicio(res.getDate(2));
+                    evento.setDataFim(res.getDate(3));
+                    evento.setHoraInicio(res.getTime(4));
+                    evento.setHoraFim(res.getTime(5));
+                    evento.setDescricao(res.getString(6));
                     eventos.add(evento);
                 }
             } catch (SQLException ex) {
@@ -123,9 +126,11 @@ public class EventoDAOImpl implements EventoDAO{
                     evento = new Evento();
                     evento.setIdEvento(idEvento);
                     evento.setLogin(res.getString(1));
-                    evento.setHoraInicio(res.getTime(2));
-                    evento.setHoraFim(res.getTime(3));
-                    evento.setDescricao(res.getString(4));
+                    evento.setDataInicio(res.getDate(2));
+                    evento.setDataFim(res.getDate(3));
+                    evento.setHoraInicio(res.getTime(4));
+                    evento.setHoraFim(res.getTime(5));
+                    evento.setDescricao(res.getString(6));
                 }
             } catch (SQLException ex) {
                 System.out.println("Message: " + ex);
