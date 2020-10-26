@@ -16,4 +16,6 @@ public interface ConviteService {
     boolean save(Convite convite);
     
     public List<Long> findAllByConvidado(String convidado);
+
+    public boolean delete(long idEvento, String convidado);
 }

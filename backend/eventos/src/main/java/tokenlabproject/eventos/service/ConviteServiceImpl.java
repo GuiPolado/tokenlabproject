@@ -37,4 +37,9 @@ public class ConviteServiceImpl implements ConviteService{
     public List<Long> findAllByConvidado(String convidado) {
         return this.conviteDao.findAllByConvidado(convidado);
     }
+
+    @Override
+    public boolean delete(long idEvento, String convidado) {
+        return this.conviteDao.delete(idEvento,convidado);
+    }
 }

@@ -21,7 +21,13 @@ public interface ConviteDAO {
             + "FROM Convite "
             + "WHERE convidado = ?";
     
+    final String DELETE = "DELETE FROM Convite "
+            + "WHERE idEvento = ? "
+            + "AND convidado = ?";
+    
     public boolean save(Convite convite);
     
     public List<Long> findAllByConvidado(String convidado);
+
+    public boolean delete(long idEvento, String convidado);
 }

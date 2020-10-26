@@ -61,4 +61,26 @@ public class InviteController {
         String eventAsString = objectMapper.writeValueAsString(eventos);
         return eventAsString;
     }
+    
+    @CrossOrigin
+    @PostMapping("/refuse-invite/{idEvento}/{convidado}")
+    public boolean refuseInvite(@PathVariable(value = "idEvento") long idEvento,
+            @PathVariable(value = "convidado") String convidado) {
+        ConviteService cv = ServiceFactory.getConviteService();
+        return cv.delete(idEvento,convidado);
+    }
+    
+    @CrossOrigin
+    @PostMapping("/accept-invite/{idEvento}/{convidado}")
+    public boolean acceptInvite(@PathVariable(value = "idEvento") long idEvento,
+            @PathVariable(value = "convidado") String convidado) {
+        ConviteService cv = ServiceFactory.getConviteService();
+        EventoService sv = ServiceFactory.getEventoService();
+        Evento evento = sv.findByID(idEvento);
+        evento.setLogin(convidado);
+        if(sv.save(evento)){
+           return cv.delete(idEvento,convidado);
+        }
+        return false;
+    }
 }

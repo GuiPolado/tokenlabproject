@@ -71,4 +71,28 @@ public class ConviteDAOImpl implements ConviteDAO{
         }
         return eventos;
     }
+
+    @Override
+    public boolean delete(long idEvento, String convidado) {
+        boolean b = false;
+        Connection con = null;
+        PreparedStatement pstm = null;
+
+        con = FabricaConexao.getConexao();
+
+        if (con != null) {
+            try {
+                con.setAutoCommit(false);
+                pstm = con.prepareStatement(DELETE);
+                pstm.setLong(1, idEvento);
+                pstm.setString(2, convidado);
+                pstm.executeUpdate();
+                con.commit();
+                b = true;
+            } catch (SQLException ex) {
+                System.out.println("Message: " + ex);
+            }
+        }
+        return b;
+    }
 }

@@ -116,7 +116,7 @@ haveInvites = () => {
 
 toggleRefuse = id =>{
   const login = getToken();
-  api.post('/refuse-invite/' + id + login)
+  api.post('/refuse-invite/' + id + '/' + login)
       .then(res => {
         if (res.data === true) {
           alert("Evento Recusado.");
@@ -129,7 +129,7 @@ toggleRefuse = id =>{
 }
 toggleAccept = id =>{
   const login = getToken();
-  api.post('/accept-invite/' + id + login)
+  api.post('/accept-invite/' + id +'/' + login)
       .then(res => {
         if (res.data === true) {
           alert("Evento Aceito.");
