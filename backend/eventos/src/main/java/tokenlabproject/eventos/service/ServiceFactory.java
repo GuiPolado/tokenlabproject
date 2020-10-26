@@ -21,4 +21,8 @@ public class ServiceFactory {
     public static EventoService getEventoService() {
         return (EventoService) new EventoServiceImpl();
     }
+    
+    public static ConviteService getConviteService() {
+        return (ConviteService) new ConviteServiceImpl();
+    }
 }

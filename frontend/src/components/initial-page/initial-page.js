@@ -14,12 +14,14 @@ class Page extends Component {
       eventos: [],
       toggleModal: false,
       idEvento: null,
+      convites: [],
       convidado: ""
     };
   }
 
   componentDidMount() {
     this.loadEventos();
+    this.loadConvites();
   }
 
   loadEventos = async () => {
@@ -27,6 +29,13 @@ class Page extends Component {
     const response = await api.get("/user-events/" + login);
 
     this.setState({ eventos: response.data });
+  }
+
+  loadConvites = async () => {
+    const login = getToken();
+    const response = await api.get("/user-invites/" + login);
+
+    this.setState({ convites: response.data });
   }
 
   toggleExclude = id => {
@@ -89,11 +98,14 @@ checkInvite = async () => {
   const login = getToken();
   api.post('/event-invite', { idEvento, login, convidado })
     .then(res => {
-      if (res.data === true) {
+      if (res.data === 1) {
         alert("Convite enviado com Sucesso!");
       }
-      else {
+      else if (res.data === 0){
         alert("Você já enviou um convite para este usuário!");
+      }
+      else{
+        alert("Usuário inserido não existe!");
       }
     })
 };

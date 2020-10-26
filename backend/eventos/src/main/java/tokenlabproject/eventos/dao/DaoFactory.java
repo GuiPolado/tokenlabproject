@@ -21,5 +21,8 @@ public class DaoFactory {
     public static EventoDAO getEventoDAO() {
         return new EventoDAOImpl();
     }
-
+    
+    public static ConviteDAO getConviteDAO(){
+        return new ConviteDAOImpl();
+    }
 }

@@ -5,7 +5,6 @@
  */
 package tokenlabproject.eventos.service;
 
-import java.sql.Time;
 import java.util.List;
 import tokenlabproject.eventos.model.Evento;
 
