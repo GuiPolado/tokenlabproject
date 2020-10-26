@@ -110,6 +110,36 @@ checkInvite = async () => {
     })
 };
 
+haveInvites = () => {
+  return true;
+}
+
+toggleRefuse = id =>{
+  const login = getToken();
+  api.post('/refuse-invite/' + id + login)
+      .then(res => {
+        if (res.data === true) {
+          alert("Evento Recusado.");
+          window.location.reload(false);
+        }
+        else {
+          alert("Erro, evento não existente");
+        }
+      });
+}
+toggleAccept = id =>{
+  const login = getToken();
+  api.post('/accept-invite/' + id + login)
+      .then(res => {
+        if (res.data === true) {
+          alert("Evento Aceito.");
+          window.location.reload(false);
+        }
+        else {
+          alert("Erro, evento não existente");
+        }
+      });
+}
 render() {
   return (
     <div className="full-page">
@@ -131,6 +161,75 @@ render() {
         <MDBFreeBird>
           <MDBRow>
             <MDBCol md="8" lg="7" className="mx-auto float-none white z-depth-1 py-2 px-2">
+             <div style={{ display: (this.state.convites == null) ? 'none' : 'block' }}>
+            <MDBCardTitle className="justify-center" >Convites</MDBCardTitle>
+              <MDBCardBody>
+                {this.state.convites.map((convite) => (
+                  <MDBCol key={convite.idEvento} md="8" lg="10" className="mx-auto float-none white z-depth-1 py-2 px-2 mb-4" >
+                  <MDBRow>
+                    <MDBCol md="5" className="mb-3">
+                      <label
+                        htmlFor="dataInicio"
+                        className="grey-text labelSpace"
+                      >
+                        Data Início:
+                        </label>
+                      {this.timestampToHuman(convite.dataInicio)}
+                    </MDBCol>
+                    <MDBCol md="5" className="mb-3">
+                      <label
+                        htmlFor="dataFim"
+                        className="grey-text labelSpace"
+                      >
+                        Data Fim:
+                                          </label>
+                      {this.timestampToHuman(convite.dataFim)}
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol md="5" className="mb-3">
+                      <label
+                        htmlFor="horaInicio"
+                        className="grey-text labelSpace"
+                      >
+                        Horário Início:
+                                          </label>
+                      {convite.horaInicio}
+                    </MDBCol>
+                    <MDBCol md="5" className="mb-3">
+                      <label
+                        htmlFor="horaFim"
+                        className="grey-text labelSpace"
+                      >
+                        Horário Fim:
+                                          </label>
+                      {convite.horaFim}
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBRow className="center">
+                    <label
+                      htmlFor="Descricao"
+                      className="grey-text labelSpace"
+                    >
+                      Descrição:
+                      </label>
+                    {convite.descricao}
+                  </MDBRow>
+                  <MDBRow className="justify-center">
+                      <MDBCol md="5" className="mb-3">
+                        <MDBBtn color="red" type="submit" onClick={() => this.toggleRefuse(convite.idEvento)}>
+                          Recusar
+                        </MDBBtn>
+                      </MDBCol>
+                      <MDBCol md="5" className="mb-3">
+                        <MDBBtn color="mdb-color" className="btn" onClick={() => this.toggleAccept(convite.idEvento)}>Aceitar</MDBBtn>
+                      </MDBCol>
+                    </MDBRow>
+                  </MDBCol>
+                ))}
+              </MDBCardBody>
+                
+              </div> 
               <MDBCardTitle className="justify-center" >Eventos</MDBCardTitle>
               <MDBCardBody>
                 {this.state.eventos.map((evento) => (
