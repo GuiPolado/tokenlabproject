@@ -161,7 +161,7 @@ render() {
         <MDBFreeBird>
           <MDBRow>
             <MDBCol md="8" lg="7" className="mx-auto float-none white z-depth-1 py-2 px-2">
-             <div style={{ display: (this.state.convites == null) ? 'none' : 'block' }}>
+             <div style={{ display: (this.state.convites == "") ? 'none' : 'block' }}>
             <MDBCardTitle className="justify-center" >Convites</MDBCardTitle>
               <MDBCardBody>
                 {this.state.convites.map((convite) => (

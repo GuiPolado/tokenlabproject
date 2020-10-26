@@ -8,12 +8,12 @@ import Sign from './components/sign/sign';
 import InitialPage from './components/initial-page/initial-page';
 import EventRegister from './components/initial-page/event-register/event-register';
 import EventEdit from './components/initial-page/event-edit/event-edit';
-//import { isAuthenticated } from "./components/services/auth";
+import { isAuthenticated } from "./components/services/auth";
 import './index.css';
 
 var hist = createBrowserHistory();
 
-/*const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
@@ -24,7 +24,7 @@ var hist = createBrowserHistory();
       )
     }
   />
-);*/
+);
 
 class App extends Component {
 
@@ -37,9 +37,9 @@ class App extends Component {
             <Route exact={true} path="/sign" component={Sign} />
             <Route exact={true} path="/login" component={Login} />
             <Route exact={true} path="/user-register" component={Register} />
-            <Route exact={true} path="/initial-page" component={InitialPage} />
-            <Route exact={true} path="/event-register" component={EventRegister} />
-            <Route exact={true} path="/event-edit" component={EventEdit} />
+            <PrivateRoute exact={true} path="/initial-page" component={InitialPage} />
+            <PrivateRoute exact={true} path="/event-register" component={EventRegister} />
+            <PrivateRoute exact={true} path="/event-edit" component={EventEdit} />
             <Route exact={true} path="/" component={Sign} />
           </Switch>
         </Router>

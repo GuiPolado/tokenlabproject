@@ -67,16 +67,16 @@ class EventEdit extends React.Component {
     };
 
     validateForm = () => {
-        if(this.state.dataFim <= this.state.dataInicio) {
+        if (this.state.dataFim <= this.state.dataInicio) {
             alert("Data final ocorre depois da inicial!");
             return false;
         }
-        else{
+        else {
             return (
                 this.state.horaInicio.length > 0 &&
                 this.state.horaFim.length > 0 &&
                 this.state.dataInicio.length > 0 &&
-                this.state.dataFim.length > 0 
+                this.state.dataFim.length > 0
             );
         }
     }
@@ -98,48 +98,50 @@ class EventEdit extends React.Component {
                                     onSubmit={this.submitHandler}
                                     noValidate
                                 >
-                                    <MDBCol md="6" className="mb-3">
-                                        <label
-                                            htmlFor="dataInicio"
-                                            className="grey-text"
-                                        >
-                                            Data - Início
+                                    <MDBRow>
+                                        <MDBCol md="6" className="mb-3">
+                                            <label
+                                                htmlFor="dataInicio"
+                                                className="grey-text"
+                                            >
+                                                Data - Início
                                             </label>
-                                        <input
-                                            name="dataInicio"
-                                            onChange={this.changeHandler}
-                                            type="date"
-                                            id="dataInicio"
-                                            className="form-control"
-                                            placeholder=""
-                                            value={this.state.dataInicio}
-                                            required
-                                        />
-                                        <div className="invalid-feedback">
-                                            Data inválida.
+                                            <input
+                                                name="dataInicio"
+                                                onChange={this.changeHandler}
+                                                type="date"
+                                                id="dataInicio"
+                                                className="form-control"
+                                                placeholder=""
+                                                value={this.state.dataInicio}
+                                                required
+                                            />
+                                            <div className="invalid-feedback">
+                                                Data inválida.
          </div>
-                                    </MDBCol>
-                                    <MDBCol md="6" className="mb-3">
-                                        <label
-                                            htmlFor="dataFim"
-                                            className="grey-text"
-                                        >
-                                            Data - Término
+                                        </MDBCol>
+                                        <MDBCol md="6" className="mb-3">
+                                            <label
+                                                htmlFor="dataFim"
+                                                className="grey-text"
+                                            >
+                                                Data - Término
                                         </label>
-                                        <input
-                                            onChange={this.changeHandler}
-                                            type="date"
-                                            id="dataFim"
-                                            className="form-control"
-                                            name="dataFim"
-                                            placeholder=""
-                                            value={this.state.dataFim}
-                                            required
-                                        />
-                                        <div className="invalid-feedback">
-                                            Data inválida.
+                                            <input
+                                                onChange={this.changeHandler}
+                                                type="date"
+                                                id="dataFim"
+                                                className="form-control"
+                                                name="dataFim"
+                                                placeholder=""
+                                                value={this.state.dataFim}
+                                                required
+                                            />
+                                            <div className="invalid-feedback">
+                                                Data inválida.
                                         </div>
-                                    </MDBCol>
+                                        </MDBCol>
+                                    </MDBRow>
                                     <MDBRow>
                                         <MDBCol md="4" className="mb-3">
                                             <label
