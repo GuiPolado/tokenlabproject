@@ -5,6 +5,7 @@
  */
 package tokenlabproject.eventos.service;
 
+import java.util.List;
 import tokenlabproject.eventos.model.Convite;
 
 /**
@@ -13,4 +14,6 @@ import tokenlabproject.eventos.model.Convite;
  */
 public interface ConviteService {
     boolean save(Convite convite);
+    
+    public List<Long> findAllByConvidado(String convidado);
 }

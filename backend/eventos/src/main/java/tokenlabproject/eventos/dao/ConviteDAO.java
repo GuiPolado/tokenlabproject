@@ -5,6 +5,7 @@
  */
 package tokenlabproject.eventos.dao;
 
+import java.util.List;
 import tokenlabproject.eventos.model.Convite;
 
 /**
@@ -16,6 +17,11 @@ public interface ConviteDAO {
             + "idEvento, login, convidado) "
             + "VALUES(?, ?, ?)";
     
+    final String FIND_BY_CONVIDADO = "SELECT idEvento "
+            + "FROM Convite "
+            + "WHERE convidado = ?";
+    
     public boolean save(Convite convite);
-
+    
+    public List<Long> findAllByConvidado(String convidado);
 }

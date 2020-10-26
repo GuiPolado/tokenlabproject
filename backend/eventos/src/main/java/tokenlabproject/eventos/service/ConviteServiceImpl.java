@@ -5,6 +5,7 @@
  */
 package tokenlabproject.eventos.service;
 
+import java.util.List;
 import tokenlabproject.eventos.dao.ConviteDAO;
 import tokenlabproject.eventos.dao.DaoFactory;
 import tokenlabproject.eventos.model.Convite;
@@ -30,5 +31,10 @@ public class ConviteServiceImpl implements ConviteService{
         }
 
         return b;
+    }
+    
+    @Override
+    public List<Long> findAllByConvidado(String convidado) {
+        return this.conviteDao.findAllByConvidado(convidado);
     }
 }
